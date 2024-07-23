@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<link rel="stylesheet" href="../Projects/index07.css">
+<script src="../Projects/indexJs.js"></script>
+
+<body>
+    <div id="mySidenav" class="sidenav" style="width: 60px;">
+        <div class="sideOpen" style="background-color: unset;">
+            <span id="btnOpen" class="openbtn" onclick="openNav()">&#8667; </span>
+            <!-- <span id="btnOpen" class="openbtn" onclick="openNav()">&#9776; </span>&#8592; -->
+            <!-- <span id="btnClose" class="closebtn" style="display: none;" onclick="closeNav()">&times;</span> -->
+            <span id="btnClose" class="closebtn" style="display: none;" onclick="closeNav()">&#8666;</span>
+        </div>
+        <ul class="sidenavContent" style="list-style-type: none;">
+            <li class="sidenavPointer"
+                style="cursor: pointer; font-size: 20px;  position: absolute; left: 75px ;top :0;  right: 0"
+                onclick="actionClick('home')"> <i class="fas fa-home"
+                    style="position: absolute; left:-50px; top: 0;"></i> Home </li>
+            <li class="sidenavPointer"
+                style="cursor: pointer; font-size: 20px; position: absolute; left: 75px ;top :30px; right: 0"
+                onclick="actionClick('todo')"> <i class="fas fa-box"
+                    style="position: absolute; left: -50px ;top :0"></i> Todo list
+            </li>
+            <ul id="ulListSide" class="ulListside"
+                style="list-style-type: none; position: relative;top: 60px; margin-bottom: 10px;">
+                <!-- <li class="liListSide">
+                    </li> -->
+            </ul>
+            <!-- </li> -->
+            <!-- <li class="sidenavPointer" id="input1"
+                style="cursor: pointer; font-size: 20px; position: absolute; left:75px; top:60px"
+                onclick="actionClick('todo')"><i style=" position: absolute; left:-30px; top: 22px;height: 350px;width: 210px; ;">  </i> todo task List
+                      </li> -->
+            <!-- <li class="ulList1" style="list-style-type: none;"></li> -->
+            <!-- <ul class="ulList" style="list-style-type: none;"></ul> -->
+        </ul>
+    </div>
+
+    <body>
+        <!-- <span class="openbtn" onclick="openNav()">&#9776; Open Side Nav</span> -->
+        <div class="header">
+            <h2 style="text-align: center; color: green;"> ** TODO APP ** </h2>
+        </div>
+        <div class="main-content">
+            <div id="home">
+                <h2>Home Page</h2>
+                <p>Welcome to the Home Page.</p>
+            </div>
+            <div id="todo" style="display: none;">
+                <div>
+                    <h1> My code To do list</h1>
+                </div>
+                <div id="container">
+                    <input type="text" id="input" placeholder=" Please Enter your task...">
+                    &nbsp; &nbsp;&nbsp;
+                    <button id="btn"> Add</button>
+                    <ul id="ulListSide" class="ulListside" style="list-style-type: none; position: relative;top: 60px; margin-bottom: 10px; text-align: -webkit-center;">
+                        <!-- <form action="/peacock.jpg"> -->
+                        <!-- <input type="file" id="myFile" name="filename" style="margin-left: 30px;">
+                        <img id="imageDisplay" src="" alt=" Selected Image  " class="upload-image" width="100px; ">
+                        <button class="btnSuccess" style="margin-left: 10px;" onclick="myFunction() ">Save</button> -->
+                        <!-- </form> -->
+                        <ul class="ulListtodo" style="list-style-type: none; display: none;  "></ul>
+                        <table id="mytable"> </table>
+                </div>
+            </div>
+            <div id="task">
+                <div class="taskList">
+                    <ul class="ulList" style="list-style-type: none; color: red; text-align: left;"></ul>
+                </div>
+            </div>
+    </body>
+
+</html>
+</div>
+</div>
+<div class="Footer">
+    © 2024 Mytodo.com . All rights reserved
+</div>
+</html>
+<script>
+    var count = 0;
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.querySelector(".main-content").style.marginLeft = "250px";
+        document.getElementById("btnOpen").style.display = "none";
+        document.getElementById("btnClose").style.display = "block";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "60px";
+        document.querySelector(".main-content").style.marginLeft = "60px";
+        document.getElementById("btnOpen").style.display = "block";
+        document.getElementById("btnClose").style.display = "none";
+    }
+
+    // the belwo text in Save-button
+    function myFunction() {
+        alert('The upload file  is correct and  save in the List');
+    }
+
+    function actionClick(action) {
+        if (action == "home") {
+            document.getElementById('home').style.display = "block";
+            document.getElementById('todo').style.display = "none";
+        }
+        else if (action == "todo") {
+            document.getElementById('home').style.display = "none";
+            document.getElementById('todo').style.display = "block";
+        }
+        document.getElementById('task').style.display = "none";
+
+    }
+    function openTask(element) {
+        console.log(element, 'hihihii');
+        // document.getElementById('home').style.display = "none";
+        //     document.getElementById('todo').style.display = "none";
+        // document.getElementById('task').style.display = "block"
+    }
+
+    function onRowDone(e, row) {
+        // Get the ID of the task and subtract 1 to get the zero-based index
+        const i = Array.from(e.parentElement.children[2].children[1].children).indexOf(row);
+
+
+        console.log(i, 'count....')
+row.children[0].style.textDecoration = "line-through";
+row.children[3].children[0].disabled = true;
+
+        // let idNew = parseInt(e.parentElement.parentElement.children[0].childNodes[0].textContent) - 1;
+        // console.log("e", row, e);
+        // e.parentElement.parentElement.children[1].style.textDecoration = "line-through";
+        // e.parentElement.parentElement.children[4].children[0].disabled = true;
+        document.getElementById('ulListSide').children[i].style.textDecoration = "line-through";
+    }
+
+    function onRowDelete(e, row) {
+        const i = Array.from(e.parentElement.children[2].children[1].children).indexOf(row);
+        document.getElementById('ulListSide').children[i].remove();
+        row.remove();
+
+        
+        console.log("e", e);
+        // e.parentElement.parentElement.remove();
+        
+
+    }
+    function onRowEdit(e,row) {
+        const i = Array.from(e.parentElement.children[2].children[1].children).indexOf(row);
+        let newTask = prompt("Edit your task please .", row.children[0].innerText);
+
+        // let newTask = prompt("Update your task please ...:" ) ;
+        if (newTask !== null && newTask.trim() !== "") {
+
+            let longinter = newTask.slice(0, 10) + (newTask.length > 10 ? "..." : " ")
+            row.childNodes[0].innerHTML = longinter;
+            document.getElementById('ulListSide').children[i].innerHTML = longinter;
+
+            // elem1.childNodes[0].nodeValue = newTask;
+            // divele.childNodes[0].nodeValue = newTask;
+        }
+    }
+    function changePriority(event, taskItem) {
+    const newPriority = event.target.value;
+    taskItem.className = newPriority;
+}
+
+    // Display an alert when the page loads
+    // alert('Welcome to do task');
+
+    // Add an event listener to the button with id 'btn'
+    document.getElementById('btn').addEventListener('click', function () {
+        let inputs = document.getElementById('input').value;
+        let inputs1 = document.getElementById('input').value;
+        let longint = inputs.slice(0, 10) + (inputs.length > 10 ? "..." : " ")
+        let longint1 = inputs1.slice(0, 10) + (inputs1.length > 10 ? "..." : " ")
+
+
+        if (longint.trim() === "") {
+            alert("Please enter a task");
+            return;
+        }
+
+
+        // Creating the to-do list element
+        let elem = document.createElement('li');
+        let elem1 = document.createElement('li');
+        let divele = document.createElement('span');
+        divele.setAttribute('id', 'spanele');
+        divele.style.color = 'Reb';
+        divele.style.fontSize = '20px';
+        divele.style.marginLeft = "190px";
+        divele.style.margintop = "140px";
+
+
+
+
+
+        let btn1 = document.createElement('button');
+        let btn2 = document.createElement('button');
+        let btn3 = document.createElement('button');
+        // let btn4 = document.createElement('button');
+
+        let btntask1 = document.createElement('button');
+        let btntask2 = document.createElement('button');
+        let btntask3 = document.createElement('button');
+
+
+        btn1.innerText = "Done";
+        btn2.innerText = 'Delete';
+        btn3.innerText = 'Update';
+
+        btntask1.innerText = "Done";
+        btntask2.innerText = 'Delete';
+        btntask3.innerText = 'Update';
+        // btn4.innerText = "Save ";
+
+        elem.innerText = longint;
+        elem1.innerText = longint1;
+        divele.innerText = longint1;
+
+        // table data
+
+        let table = document.getElementById("mytable");
+        let rowCount = table.rows.length;
+        // let row = table.insertRow(rowCount);
+        const row = document.createElement('tr');
+        // let cell1 = row.insertCell(0);
+        // cell1.innerHTML = rowCount + 1;
+
+        // // let cell1 = row.insertCell(0);
+        // let cell2 = row.insertCell(1);
+        // let cell3 = row.insertCell(2);
+        // let cell4 = row.insertCell(3);
+        // let cell5 = row.insertCell(4);
+        // let cell6 = row.insertCell(5);
+
+        // cell2.innerHTML = longint;
+
+        let cell1 = document.createElement('td');
+        let cell2 = document.createElement('td');
+        let cell3 = document.createElement('td');
+        let cell4 = document.createElement('td');
+        let cell5 = document.createElement('td');
+        let cell6 = document.createElement('td');
+
+        cell2.innerHTML = longint;
+
+
+        //  cell2.appendChild(btn1);
+        //  cell3.appendChild(btn2);
+        //  cell4.appendChild(btn3);
+        const buttonDone = document.createElement('button');
+        buttonDone.value = "Done";
+        buttonDone.innerText = "Done"
+        buttonDone.onclick = (event) => onRowDone(this, row);
+        cell3.appendChild(buttonDone)
+
+        const buttonDelete = document.createElement('button');
+        buttonDelete.value = "Delete";
+        buttonDelete.innerText = "Delete"
+        buttonDelete.onclick = (event) => onRowDelete(this, row);
+        cell4.appendChild(buttonDelete)
+
+        const buttonEdit = document.createElement('button');
+        buttonEdit.value = "Edit";
+        buttonEdit.innerText = "Edit"
+        buttonEdit.onclick = (event) => onRowEdit(this, row);
+        cell5.appendChild(buttonEdit)
+
+        // cell3.appendChild("<button  onclick ='onRowDone(this,row)' class='btn btn-primary btn-xs'> Done</button>");
+        // cell4.innerHTML = "<button   onclick ='onRowDelete(this)' class='btn btn-primary btn-xs'> Delete</button>";
+        // cell5.innerHTML = "<button  onclick ='onRowEdit(this)'  class='btn btn-primary btn-xs'> Edit</button>";
+        // cell6.innerHTML = "<select onchange='changePriority(event, row)' id='prioritySelect'><option value='high'>High</option><option value='medium'>Medium</option> <option value='low'>Low</option>    </select>";
+
+        const priorityDropdown = document.createElement('select');
+        priorityDropdown.innerHTML = `
+            <option value="high" >High</option>
+            <option value="medium" >Medium</option>
+            <option value="low" >Low</option>
+        `;
+        cell6.appendChild(priorityDropdown)
+        priorityDropdown.onchange = (event) => changePriority(event, row);
+        row.appendChild(cell2);
+        row.appendChild(cell3);
+        row.appendChild(cell4);
+        row.appendChild(cell5);
+        row.appendChild(cell6);
+        table.appendChild(row);
+        // Append the created elements to HTML :  NOT REQUIRED
+        let ul = document.querySelector('.ulListtodo');
+        ul.appendChild(elem);
+        elem.appendChild(btn1);
+        elem.appendChild(btn2);
+        elem.appendChild(btn3);
+        // // elem.appendChild(btn4);
+
+        // let div = document.querySelector('.taskList');
+        divele.appendChild(btntask1);
+        divele.appendChild(btntask2);
+        divele.appendChild(btntask3);
+
+
+        let ul1 = document.querySelector('#ulListSide');
+        elem1.classList.add('liSideTodo');
+        elem1.setAttribute('id', 'liSideTodo');
+
+        ul1.appendChild(elem1);
+
+
+        // elem1.appendChild(btn1);
+        // elem1.appendChild(btn2);
+        // elem1.appendChild(btn3);
+        // elem1.appendChild(btn4);
+
+
+
+
+        // Adding styles to the list buttons
+        btn1.style.border = "2px solid green";
+        btn1.style.marginLeft = "10%";
+        btn1.style.borderRadius = "8px";
+        btn1.style.backgroundColor = "#b4b3d8";
+
+        btn2.style.border = "2px solid red";
+        btn2.style.marginLeft = "12%";
+        btn2.style.borderRadius = "8px";
+        btn2.style.backgroundColor = "#b4b3d8";
+
+        btn3.style.border = "2px solid lightblue";
+        btn3.style.marginLeft = "15%";
+        btn3.style.borderRadius = "8px";
+        btn3.style.backgroundColor = "#b4b3d8";
+
+
+        btntask1.style.border = "2px solid green";
+        btntask1.style.marginLeft = "10%";
+        btntask1.style.borderRadius = "8px";
+        btntask1.style.backgroundColor = "#b4b3d8";
+
+        btntask2.style.border = "2px solid red";
+        btntask2.style.marginLeft = "12%";
+        btntask2.style.borderRadius = "8px";
+        btntask2.style.backgroundColor = "#b4b3d8";
+
+        btntask3.style.border = "2px solid lightblue";
+        btntask3.style.marginLeft = "15%";
+        btntask3.style.borderRadius = "8px";
+        btntask3.style.backgroundColor = "#b4b3d8";
+
+
+
+
+        // btn4.style.border = "2px solid lightblue";
+        // btn4.style.marginLeft = "15%";
+        // btn4.style.borderRadius = "8px";
+        // btn4.style.backgroundColor = "#b4b3d8";
+
+        // Adding functionality to buttons
+        btn1.addEventListener('click', function () {
+            elem.style.textDecoration = "line-through";
+            elem1.style.textDecoration = "line-through";
+            divele.style.textDecoration = "line-through";
+        });
+
+        btn2.addEventListener('click', function () {
+            elem.remove();
+            elem1.remove();
+            divele.remove();
+        });
+
+        btn3.addEventListener('click', function () {
+            let newTask = prompt("Edit your task please .", elem.childNodes[0].nodeValue);
+
+            // let newTask = prompt("Update your task please ...:" ) ;
+            if (newTask !== null && newTask.trim() !== "") {
+                let longinter = newTask.slice(0, 10) + (newTask.length > 10 ? "..." : " ")
+                elem.childNodes[0].nodeValue = longinter;
+                elem1.childNodes[0].nodeValue = longinter;
+                divele.childNodes[0].nodeValue = longinter;
+            }
+        });
+
+
+        // Adding functionality to buttons
+        btntask1.addEventListener('click', function () {
+            elem.style.textDecoration = "line-through";
+            elem1.style.textDecoration = "line-through";
+            divele.style.textDecoration = "line-through";
+        });
+
+        btntask2.addEventListener('click', function () {
+            elem.remove();
+            elem1.remove();
+            divele.remove();
+        });
+
+        btntask3.addEventListener('click', function () {
+            let newTask = prompt("Edit your task please .", elem1.innerText);
+            // let newTask = prompt("Update your task please ...:" ) ;
+            if (newTask !== null && newTask.trim() !== "") {
+
+                let longinter = newTask.slice(0, 10) + (newTask.length > 10 ? "..." : " ")
+
+
+                elem.childNodes[0].nodeValue = longinter;
+                elem1.childNodes[0].nodeValue = longinter;
+                divele.childNodes[0].nodeValue = longinter;
+                // elem.childNodes[0].nodeValue = newTask;
+                // elem1.childNodes[0].nodeValue = newTask;
+                // divele.childNodes[0].nodeValue = newTask;
+            }
+        });
+
+
+        // btn4.addEventListener('click', function () {
+        //     let newTask = prompt("Update your task please ...:", elem.innerText);
+        //     // let newTask = prompt("Update your task please ...:" ) ;
+        //     if (newTask !== null && newTask.trim() !== "") {
+        //         elem.childNodes[0].nodeValue = newTask;
+        //     }
+        // });
+
+        elem1.addEventListener('click', function () {
+            console.log(elem1, '........')
+            let div = document.querySelector('.taskList');
+            // divele.appendChild(btn1);
+            // divele.appendChild(btn2);
+            // divele.appendChild(btn3);
+            // divele.appendChild(btn4);
+            // const child = document.getElementById('spanele');
+            div.innerHTML = ""
+            // div.removeChild(div.firstChild);
+            div.appendChild(divele)
+
+            document.getElementById('home').style.display = "none";
+            document.getElementById('todo').style.display = "none";
+            document.getElementById('task').style.display = "block"
+        })
+        document.getElementById('input').value = "";
+        // document.getElementById('btn3').value = "";
+    });
+
+    document.getElementById('liSideTodo').addEventListener('click', function (event) {
+        console.log(event, 'event')
+    })
+    document.getElementById('myFile').addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = document.getElementById('imageDisplay');
+                img.src = e.target.result;
+                // img.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+
+
+</script>
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        transition: margin-left .5s;
+    }
+
+    .header {
+        padding: 10px;
+        margin: 0;
+        height: 50px;
+        width: 100%;
+        background-color: white;
+        border: 2px solid rgb(93, 111, 121);
+        color: rgb(70, 66, 69);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+    }
+
+    .Footer {
+        padding-top: 10px;
+        margin: 0;
+        height: 25px;
+        width: 100%;
+        background-color: #d8f5e7;
+        ;
+        color: rgb(14, 0, 0);
+        text-align: center;
+
+
+    }
+
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #adc2eb;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 40px;
+        border-radius: 0;
+    }
+
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: white;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidenav a:hover {
+        background-color: white;
+    }
+
+    li:hover {
+        cursor: pointer;
+        /* background-color: white; */
+    }
+
+    i:hover {
+        /* background-color: white; */
+    }
+
+
+    .sidenav .closebtn {
+        /* position: absolute;
+        top: 0;
+      rsor: pointer;
+    font-size: 36px;
+    /* margin-left: 50px; */
+        font-size: 26px;
+        cursor: pointer;
+        background-color: #18b4dbec;
+        ;
+        color: Thick white;
+        padding: 11px 34px 0px 17px;
+        /* border: none; */
+        margin-left: 205px;
+    }
+
+    .openbtn {
+        font-size: 26px;
+        padding: 1px 36px 1px 25px;
+        cursor: pointer;
+        background-color: #18b4dbec;
+        ;
+        color: white;
+        margin-left: 10px;
+        margin-top: 3px;
+        position: relative;
+        top: 9px;
+    }
+
+    .openbtn:hover {
+        background-color: #94bfe7;
+    }
+
+    .closebtn:hover {
+        background-color: #80afe4;
+    }
+
+    .main-content {
+        margin-left: 60px;
+        padding: 1px;
+        transition: margin-left .5s;
+        background-color: white;
+        height: 542px;
+        width: 100%;
+        /* display: flex;
+        flex-direction: row; */
+
+        /* flex-wrap: nowrap;   */
+        /* as the size of screen changes the items alignment never disturbed */
+    }
+
+    h2 {
+        color: #333;
+    }
+
+
+
+    .upload-image {
+        width: 49px;
+        height: 58px;
+        position: relative;
+        top: 10px;
+    }
+
+    .sidenavContent {
+        position: sticky;
+        top: 10px;
+        right: 5px;
+    }
+
+    body {
+        margin: 0;
+        background-color: whitesmoke;
+        /* overflow-y: hidden; */
+        overflow-x: hidden;
+
+    }
+
+    h1 {
+        text-align: center;
+        color: purple;
+    }
+
+    div {
+        margin: 0;
+        padding: 3px 10px 1px 4px;
+        background-color: #e9bfce;
+        border: none;
+        border-radius: 15px;
+    }
+
+    .image1 {
+        width: 75px;
+        height: 75px;
+        /* margin-top: 20px; */
+        position: relative;
+        top: 29px;
+        right: 36px;
+    }
+
+    #myFile {
+        border: 1px solid black;
+        border-radius: 10px;
+    }
+
+    #home {
+        /* margin-left: 20px; */
+        padding-left: 20px;
+
+    }
+
+    #container {
+        margin: 24px;
+        padding: 10px;
+        color: black;
+        background-color: white;
+        text-align: center;
+        /* overflow: hidden; */
+        height: 60vh;
+        /* max-height: 100%; 
+     */
+        overflow-y: auto;
+
+    }
+
+
+    #input {
+        color: black;
+        background-color: white;
+        border: 2px solid rgb(245, 201, 161);
+        height: 25px;
+        border-radius: 10px;
+        width: 400px;
+    }
+
+
+    #input1 {
+        color: black;
+        background-color: white;
+        border: 2px solid rgb(245, 201, 161);
+        height: 25px;
+        border-radius: 10px;
+        width: 400px;
+    }
+
+    #btn {
+        border-radius: 5px;
+        color: #120101;
+        background-color: rgb(235 214 19);
+        border: 1px solid rgb(99 114 13);
+        height: 28px;
+        margin: 5px;
+        padding: 5px;
+        width: 46px;
+        cursor: pointer;
+    }
+
+    .btnSuccess {
+        background-color: green;
+        color: white;
+        text-align: center;
+        height: 26px;
+        margin-left: 700px;
+
+    }
+
+
+    /* .liSideTodo {
+        overflow: auto;
+    } */
+    .taskList {
+        text-align: left;
+        align-items: center;
+    }
+
+
+    ulListtodo {
+        text-align: left;
+        display: flex;
+        flex-direction: row;
+    }
+
+    tr.high {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+tr.medium {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+tr.low {
+    background-color: #d4edda;
+    color: #155724;
+}
+</style>
